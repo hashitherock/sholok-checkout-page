@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { initialCart, divisions, locationData, districtsFor, areasFor, delivery, totals, clampQuantity, validateCoupon, validPhone, validateAddress, blankAddress, orderId, isCart, readStorage, writeStorage } from '@/features/checkout/model';
 
+const firstProduct = initialCart.find(p=>p.id==='1');
+if (!firstProduct) throw new Error('Required demonstration product missing');
+const lawnProduct = firstProduct;
+
 describe('Checkout business rules',()=>{
  it('contains all 8 divisions and 64 districts with 495 upazilas plus Dhaka neighborhoods',()=>{expect(divisions).toHaveLength(8);expect(Object.values(locationData).flatMap(Object.keys)).toHaveLength(64);expect(Object.values(locationData).flatMap(Object.values).flat()).toHaveLength(509);for(const d of divisions)for(const district of districtsFor(d))expect(areasFor(d,district).length).toBeGreaterThan(1);});
  it('charges 100 for the entire Dhaka division with 2–3 days',()=>{expect(delivery('Dhaka').fee).toBe(100);expect(delivery('Dhaka').estimate).toContain('2–3');expect(districtsFor('Dhaka')).toContain('Tangail');expect(totals(initialCart,'Dhaka',null).shipping).toBe(100);});
@@ -9,8 +13,8 @@ describe('Checkout business rules',()=>{
  it('initial prices are 2350, 850 and 450 and all products are selected',()=>{expect(initialCart.map(p=>p.price)).toEqual([2350,850,450]);expect(initialCart.every(p=>p.selected)).toBe(true);expect(totals(initialCart,'',null).subtotal).toBe(3650);});
  it('includes only selected quantities in the subtotal and count',()=>{const cart=initialCart.map((p,i)=>({...p,selected:i===1,quantity:2}));expect(totals(cart,'Dhaka',null)).toEqual({subtotal:1700,count:2,shipping:100,discount:0,total:1800});});
  it('quantity is an integer between 1 and 20',()=>{expect(clampQuantity(0)).toBe(1);expect(clampQuantity(21)).toBe(20);expect(clampQuantity(3.5)).toBe(3);});
- it('SHOLOK10 discounts selected subtotal by 10% and updates with quantity',()=>{expect(totals(initialCart,'Dhaka','SHOLOK10').discount).toBe(365);expect(totals([{...initialCart[0],quantity:2}],'Dhaka','SHOLOK10').discount).toBe(470);});
- it('SAVE100 is capped at subtotal and cannot make the total negative',()=>{expect(totals(initialCart,'','SAVE100').discount).toBe(100);expect(totals([{...initialCart[0],price:50}],'','SAVE100').total).toBe(0);});
+ it('SHOLOK10 discounts selected subtotal by 10% and updates with quantity',()=>{expect(totals(initialCart,'Dhaka','SHOLOK10').discount).toBe(365);expect(totals([{...lawnProduct,quantity:2}],'Dhaka','SHOLOK10').discount).toBe(470);});
+ it('SAVE100 is capped at subtotal and cannot make the total negative',()=>{expect(totals(initialCart,'','SAVE100').discount).toBe(100);expect(totals([{...lawnProduct,price:50}],'','SAVE100').total).toBe(0);});
  it('validates coupons case-insensitively and rejects empty, invalid and no selection',()=>{expect(validateCoupon(' sholok10 ',true).coupon).toBe('SHOLOK10');expect(validateCoupon('save100',true).coupon).toBe('SAVE100');expect(validateCoupon('',true).valid).toBe(false);expect(validateCoupon('bad',true).valid).toBe(false);expect(validateCoupon('SAVE100',false).valid).toBe(false);});
  it('accepts Bangladesh local, +880 and 880 mobile formats only',()=>{for(const p of ['01712345678','+8801712345678','8801712345678'])expect(validPhone(p)).toBe(true);for(const p of ['01212345678','017123','+11712345678'])expect(validPhone(p)).toBe(false);});
  it('requires a valid address and rejects district or area from another division',()=>{expect(Object.keys(validateAddress(blankAddress))).toEqual(['fullName','phone','division','district','area','street']);const a={...blankAddress,fullName:'Ayesha Rahman',phone:'01712345678',division:'Dhaka',district:'Dhaka',area:'Savar',street:'House 12'};expect(validateAddress(a)).toEqual({});expect(validateAddress({...a,district:'Sylhet'}).district).toBeDefined();expect(validateAddress({...a,area:'Other Area'}).otherArea).toBeDefined();});
