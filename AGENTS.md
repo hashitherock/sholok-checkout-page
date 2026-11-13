@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application rules
+- Keep checkout state in versioned browser storage and access storage only after hydration or in event handlers; this is a frontend-only checkout simulation.
+- Centralize checkout calculations and validation in pure utilities and bundle location data locally so all checkout behavior works without services.
+- Use the global stylesheet for the source checkout design and shared Button variants for controls to preserve visual consistency.
