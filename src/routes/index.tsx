@@ -6,7 +6,7 @@ import Checkout from "@/features/checkout/Checkout";
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
     { title: "Secure Checkout — Complete Your Order | SHOLOK" },
-    { name: "description", content: "Review your SHOLOK products, choose your Bangladesh delivery address and complete a local demo checkout." },
+    { name: "description", content: "Review your SHOLOK products, choose your Bangladesh delivery address and complete your checkout." },
     { property: "og:title", content: "Secure Checkout | SHOLOK" },
     { property: "og:description", content: "Review your order and enter your delivery details at SHOLOK." },
     { property: "og:type", content: "website" },
