@@ -3,15 +3,15 @@
     "capability": "code",
     "source": "Original HTML, CSS and JavaScript",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Recreate original checkout in React"
+    "status": "verified",
+    "next_action": "None"
   },
   {
     "capability": "local records",
     "source": "In-memory demo cart",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Versioned browser storage"
+    "status": "verified",
+    "next_action": "None"
   },
   {
     "capability": "database",
@@ -38,8 +38,8 @@
     "capability": "assets",
     "source": "CSS placeholder product illustrations",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Create product photography"
+    "status": "verified",
+    "next_action": "None"
   },
   {
     "capability": "providers",
@@ -66,14 +66,14 @@
     "capability": "cutover",
     "source": "Standalone frontend archive",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Serve checkout at /"
+    "status": "verified",
+    "next_action": "None"
   },
   {
     "capability": "verification",
     "source": "Source and requirements",
     "outcome": "migrate",
-    "status": "pending",
-    "next_action": "Test checkout and responsive widths"
+    "status": "verified",
+    "next_action": "None"
   }
 ]
