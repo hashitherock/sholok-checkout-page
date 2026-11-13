@@ -1,0 +1,79 @@
+[
+  {
+    "capability": "code",
+    "source": "Original HTML, CSS and JavaScript",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "None"
+  },
+  {
+    "capability": "local records",
+    "source": "In-memory demo cart",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "None"
+  },
+  {
+    "capability": "database",
+    "source": "No database detected",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "None"
+  },
+  {
+    "capability": "auth identities",
+    "source": "No authentication detected",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "None"
+  },
+  {
+    "capability": "authorization",
+    "source": "No private server resources",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "None"
+  },
+  {
+    "capability": "assets",
+    "source": "CSS placeholder product illustrations",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "None"
+  },
+  {
+    "capability": "providers",
+    "source": "No payment, shipping, email or AI integration",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "Frontend payment simulation only"
+  },
+  {
+    "capability": "public endpoints, callbacks, webhooks, schedules",
+    "source": "None detected in all three source files",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "None"
+  },
+  {
+    "capability": "secrets",
+    "source": "No credentials detected",
+    "outcome": "not_applicable",
+    "status": "accepted",
+    "next_action": "None"
+  },
+  {
+    "capability": "cutover",
+    "source": "Standalone frontend archive",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "None"
+  },
+  {
+    "capability": "verification",
+    "source": "Source and requirements",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "None"
+  }
+]

@@ -1,0 +1,4 @@
+# Checkout roadmap
+- [x] Recreate original checkout design and complete local location dataset.
+- [x] Implement cart, coupons, delivery, address, payments, local order persistence and accessible confirmation.
+- [x] Verify rules, complete checkout, persistence and all requested screen widths.
