@@ -7,3 +7,4 @@
 - [x] Remove the confirmation disclaimer line and visible Demo wording.
 - [x] Show initial products when opening checkout with an empty saved cart; preserve normal removal and completed orders.
 - [x] Remove My orders controls and the empty-cart message and Browse products block without deleting saved orders.
+- [x] Remove red-orange #D31710 from the whole interface and keep purple accents only.
