@@ -6,4 +6,4 @@
 - [x] Check revised desktop/mobile checkout and confirmation.
 - [x] Remove the confirmation disclaimer line and visible Demo wording.
 - [x] Show initial products when opening checkout with an empty saved cart; preserve normal removal and completed orders.
-- [ ] Remove My orders controls and the empty-cart message and Browse products block without deleting saved orders.
+- [x] Remove My orders controls and the empty-cart message and Browse products block without deleting saved orders.
