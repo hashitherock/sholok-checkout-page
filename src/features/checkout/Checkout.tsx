@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode, type FormEvent } from 'rea
 import * as Dialog from '@radix-ui/react-dialog';
 import { MapPin, ShoppingBag, Truck, CreditCard, Home, Building2, Minus, Plus, ArrowRight, ShieldCheck, CircleHelp, Check, X, Banknote, History, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { initialCart, blankAddress, divisions, districtsFor, areasFor, delivery, totals, money, paymentNames, validateAddress, validateCoupon, clampQuantity, orderId, keys, readStorage, writeStorage, removeStorage, isCart, isAddress, isOrders, type Product, type Address, type Payment, type Coupon, type Order } from './model';
+import { initialCart, openingCart, blankAddress, divisions, districtsFor, areasFor, delivery, totals, money, paymentNames, validateAddress, validateCoupon, clampQuantity, orderId, keys, readStorage, writeStorage, removeStorage, isCart, isAddress, isOrders, type Product, type Address, type Payment, type Coupon, type Order } from './model';
 function Section({icon, title, subtitle, children, extra}: {icon:ReactNode; title:ReactNode; subtitle?:string; children:ReactNode;extra?:ReactNode}) {
  return <section className="panel"><div className="section-heading"><span className="section-icon">{icon}</span><div><h2>{title}</h2>{subtitle&&<p>{subtitle}</p>}</div>{extra}</div>{children}</section>;
 }
@@ -28,7 +28,7 @@ export default function Checkout() {
  const [processing,setProcessing]=useState(false);
  const allRef=useRef<HTMLInputElement>(null);
  useEffect(()=>{
-  const restored=readStorage(keys.cart,initialCart,isCart).map(p=>({...p,image:initialCart.find(item=>item.id===p.id)?.image??p.image}));setCart(restored);
+  const restored=openingCart(readStorage(keys.cart,initialCart,isCart));setCart(restored);
   const prefs=readStorage(keys.preferences,{payment:'cod' as Payment,saveAddress:true},v=>!!v&&typeof v==='object'&&'payment' in v&&typeof v.payment==='string'&&v.payment in paymentNames&&'saveAddress' in v&&typeof v.saveAddress==='boolean');
   setPayment(prefs.payment);setSaveAddress(prefs.saveAddress);
   if(prefs.saveAddress)setAddress(readStorage(keys.address,blankAddress,isAddress));

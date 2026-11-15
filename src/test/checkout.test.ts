@@ -1,11 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { initialCart, divisions, locationData, districtsFor, areasFor, delivery, totals, clampQuantity, validateCoupon, validPhone, validateAddress, blankAddress, orderId, isCart, readStorage, writeStorage } from '@/features/checkout/model';
+import { initialCart, openingCart, divisions, locationData, districtsFor, areasFor, delivery, totals, clampQuantity, validateCoupon, validPhone, validateAddress, blankAddress, orderId, isCart, readStorage, writeStorage } from '@/features/checkout/model';
 
 const firstProduct = initialCart.find(p=>p.id==='1');
 if (!firstProduct) throw new Error('Required demonstration product missing');
 const lawnProduct = firstProduct;
 
 describe('Checkout business rules',()=>{
+ it('opens an empty saved cart with the three initial products selected',()=>{const cart=openingCart([]);expect(cart.map(p=>p.id)).toEqual(['1','2','3']);expect(cart.every(p=>p.selected)).toBe(true);expect(totals(cart,'',null).subtotal).toBe(3650);});
+ it('preserves nonempty saved cart quantities and selections on opening',()=>{const cart=openingCart([{...lawnProduct,quantity:4,selected:false}]);expect(cart).toHaveLength(1);expect(cart[0]?.quantity).toBe(4);expect(cart[0]?.selected).toBe(false);});
  it('contains all 8 divisions and 64 districts with 495 upazilas plus Dhaka neighborhoods',()=>{expect(divisions).toHaveLength(8);expect(Object.values(locationData).flatMap(Object.keys)).toHaveLength(64);expect(Object.values(locationData).flatMap(Object.values).flat()).toHaveLength(509);for(const d of divisions)for(const district of districtsFor(d))expect(areasFor(d,district).length).toBeGreaterThan(1);});
  it('charges 100 for the entire Dhaka division with 2–3 days',()=>{expect(delivery('Dhaka').fee).toBe(100);expect(delivery('Dhaka').estimate).toContain('2–3');expect(districtsFor('Dhaka')).toContain('Tangail');expect(totals(initialCart,'Dhaka',null).shipping).toBe(100);});
  it('charges 150 for each of the other seven divisions with 3–7 days',()=>{for(const d of divisions.filter(d=>d!=='Dhaka')){expect(delivery(d).fee).toBe(150);expect(delivery(d).estimate).toContain('3–7');}});
