@@ -5,4 +5,4 @@
 - [x] Remove repeated summary products, update confirmation wording and Amount label, and refine the premium presentation.
 - [x] Check revised desktop/mobile checkout and confirmation.
 - [x] Remove the confirmation disclaimer line and visible Demo wording.
-- [ ] Show initial products when opening checkout with an empty saved cart; preserve normal removal and completed orders.
+- [x] Show initial products when opening checkout with an empty saved cart; preserve normal removal and completed orders.
