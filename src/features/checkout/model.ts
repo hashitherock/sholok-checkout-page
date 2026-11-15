@@ -12,6 +12,10 @@ export const initialCart: Product[] = [
  {id:'2',name:'Classic Everyday Cotton Scarf with Soft Breathable Fabric',image:scarf,color:'Olive',size:'One size',price:850,quantity:1,selected:true},
  {id:'3',name:'Minimal Everyday Tote Bag — Durable Reusable Shopping Bag',image:tote,color:'Sand',size:'Medium',price:450,quantity:1,selected:true}
 ];
+export function openingCart(saved: Product[]): Product[] {
+ const products = saved.length > 0 ? saved : initialCart;
+ return products.map(p=>({...p,image:initialCart.find(item=>item.id===p.id)?.image??p.image}));
+}
 export type Address = {fullName:string;phone:string;division:string;district:string;area:string;otherArea:string;street:string;landmark:string;notes:string;label:'Home'|'Office'};
 export const blankAddress: Address = {fullName:'',phone:'',division:'',district:'',area:'',otherArea:'',street:'',landmark:'',notes:'',label:'Home'};
 export const paymentNames = {cod:'Cash on Delivery',bkash:'bKash',nagad:'Nagad',online:'Card / Online Payment'};
