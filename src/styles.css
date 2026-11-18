@@ -27,3 +27,36 @@
 .remove-item:hover,.remove-coupon:hover{color:var(--brand-accent-dark)}
 .summary-lines .discount{font-weight:800}
 .notice{border-left:3px solid var(--brand-accent)}
+/* Expanded red-orange brand presence */
+:root{--accent-ring:oklch(0.5545 0.217 29 / .16)}
+.site-header{background-size:100% 4px}
+.section-heading::after{width:64px;height:3px}
+.summary-icon,.help-icon{background:var(--brand-accent-soft);color:var(--brand-accent)}
+.section-heading h2::after,.summary-head h2::after{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-radius:50%;background:var(--brand-accent);vertical-align:3px}
+.field input:focus,.field select:focus,.field textarea:focus,.coupon-entry input:focus{border-color:var(--brand-accent);box-shadow:0 0 0 3px var(--accent-ring)}
+.field select:focus{background-color:var(--card)}
+input[type=checkbox]{accent-color:var(--brand-accent)}
+.label-choice.selected{border-color:var(--brand-accent);background:var(--brand-accent-soft);color:var(--brand-accent-dark)}
+.unit-price{color:var(--brand-accent)}
+.qty-control{border-color:var(--brand-accent-soft)}
+.qty-control button:hover{background:var(--brand-accent-soft);color:var(--brand-accent)}
+.qty-value{color:var(--brand-accent-dark)}
+.item-row:not(.item-row-unselected) .product-image{border-color:var(--brand-accent-soft);box-shadow:0 0 0 2px var(--brand-accent-soft)}
+.shipping-summary{border-left:4px solid var(--brand-accent)}
+.shipping-price{color:var(--brand-accent)}
+.payment-option.selected{border-color:var(--brand-accent);background:var(--brand-accent-soft)}
+.payment-option.selected .payment-emoji{background:var(--brand-accent);color:var(--primary-foreground)}
+.payment-option:focus-within{outline-color:var(--brand-accent)}
+.payment-hint{border-left:3px solid var(--brand-accent);background:var(--brand-accent-soft);color:var(--foreground)}
+.coupon-entry button{background:var(--brand-accent);border-color:var(--brand-accent);color:var(--primary-foreground)}
+.coupon-entry button:hover{background:var(--brand-accent-dark);color:var(--primary-foreground)}
+.coupon-block>p.success{color:var(--brand-accent-dark);font-weight:700}
+.summary-lines .total-line{border-top:2px solid var(--brand-accent)}
+.summary-lines .total-line strong{color:var(--brand-accent);font-size:20px}
+.checkout-button{position:relative;overflow:hidden}
+.checkout-button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--brand-accent);transform:scaleX(.25);transition:transform .25s}
+.checkout-button:hover::after,.checkout-button:focus-visible::after{transform:scaleX(1)}
+.trust-row svg,.secure-footer svg{color:var(--brand-accent)}
+.help-card button:hover,.terms button:hover{color:var(--brand-accent)}
+.success-check{box-shadow:0 0 0 6px var(--brand-accent-soft)}
+.demo-order-number strong{color:var(--brand-accent)}
